@@ -63,10 +63,11 @@ app.post("/login", (req, res) => {
 
 
 app.get("/home", authMiddleware, (req, res) => {
-  if (req.session.users) {
-   return res.render("home", {username: req.session.users} );
+
+   if (!req.session.users) {
+    return res.render("/");
   }
-   return res.render("/");
+   return res.render("home", {username: req.session.users} );
    
 });
 
