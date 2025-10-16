@@ -20,7 +20,7 @@ app.use(
     secret: "raj12raj", 
     resave: false,
     saveUninitialized: false,
-    cookie: {httpOnly: true, maxAge: 600000},
+    cookie: {httpOnly: true, maxAge: 60000},
   })
 );
 
@@ -65,7 +65,7 @@ app.post("/login", (req, res) => {
 app.get("/home", authMiddleware, (req, res) => {
 
    if (!req.session.users) {
-    return res.render("/");
+    return res.redirect("/");
   }
    return res.render("home", {username: req.session.users} );
    
@@ -78,6 +78,7 @@ app.get("/logout", (req, res) => {
   });
   
 });
+
 
 // Start server
 app.listen(5000, () => {

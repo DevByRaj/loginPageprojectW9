@@ -46,25 +46,27 @@
                             <%= error %>
                         </div>
                     <% } %>
-
-                    <form action="/login" method="POST">
+   
+                    
+                    <form id="loginForm" action="/login" method="POST">
                         <div class="mb-3">
-                            <label>Username</label>
-                            <input type="text" name="username" class="form-control">
-                        </div>
+                           <label>Username</label>
+                       <input type="text" id="username" name="username" class="form-control" placeholder="Enter username">
+                         </div>
 
-                        <div class="mb-3">
-                            <label>Password</label>
+                         <div class="mb-3">
+                         <label>Password</label>
                             <div class="password-container">
-                                <input type="password" id="password" name="password" class="form-control">
-                                <button type="button" id="togglePassword">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-                            </div>
-                        </div>
+                       <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
+                              <button type="button" id="togglePassword">
+                            <i class="bi bi-eye"></i>
+                             </button>
+                         </div>
+                          </div>
 
-                        <button class="btn btn-primary w-100">Login</button>
+                             <button class="btn btn-primary w-100" type="submit">Login</button>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -84,6 +86,18 @@
             icon.classList.toggle('bi-eye');
             icon.classList.toggle('bi-eye-slash');
         });
+
+        // Form validation
+    const loginForm = document.querySelector('#loginForm');
+    loginForm.addEventListener('submit', function (e) {
+        const username = document.querySelector('#username').value.trim();
+        const passwordValue = password.value.trim();
+
+        if (!username || !passwordValue) {
+            e.preventDefault();
+            alert('Please enter both username and password.');
+        }
+    });
     </script>
 </body>
 </html>
